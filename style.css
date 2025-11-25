@@ -1,0 +1,76 @@
+body {
+    background-image: url(imgs/b-g\ img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.navbar {
+    background-color: rgba(245, 245, 245, 0.418);
+}
+
+.myLogo {
+    width: 140px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#question {
+    font-size: 28px;
+    font-weight: bold;
+    color: #5a189a;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    font-family: "Arial", sans-serif;
+    transition: 0.3s ease;
+}
+
+#question:hover {
+    transform: scale(1.03);
+}
+
+#options button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    font-size: 18px;
+    background-color: #8d5f8c;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+#options button:hover {
+    background-color: #b95e82;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+}
+
+.prevbtn,
+.nextbtn {
+    background-color: #5a189a;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 10px;
+    border: none;
+    transition: 0.25s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.prevbtn:hover,
+.nextbtn:hover {
+    background-color: #b95e82;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+}
