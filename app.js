@@ -1,138 +1,148 @@
-var questions = [
-    {
-        question: "Which event is used when a user clicks a button?",
-        options: ["onpress", "onclick", "onhover", "onchange"],
-        answer: "onclick"
-    },
-    {
-        question: "What does this.style refer to?",
-        options: ["External CSS file", "The clicked element", "Parent element", "HTML document"],
-        answer: "The clicked element"
-    },
-    {
-        question: "Which property is used to change CSS using JavaScript?",
-        options: ["css", "design", "style", "class"],
-        answer: "style"
-    },
-    {
-        question: "How to change the text of an HTML element?",
-        options: ["innerHTML", "HTMLtext", "getHTML", "printText"],
-        answer: "innerHTML"
-    },
-    {
-        question: "Which method selects an element by ID?",
-        options: ["getElementById()", "getId()", "queryID()", "findId()"],
-        answer: "getElementById()"
-    },
-    {
-        question: "How to get the first child of an element?",
-        options: ["element.firstChild", "element.child[0]", "element.children", "element.startChild"],
-        answer: "element.firstChild"
-    },
-    {
-        question: "Which event is used when a value changes in an input field?",
-        options: ["onclick", "onhover", "onchange", "onsubmit"],
-        answer: "onchange"
-    },
-    {
-        question: "Which function swaps images?",
-        options: ["imageChange()", "swapImage()", "this.src = other.src", "exchangeImage()"],
-        answer: "this.src = other.src"
-    },
-    {
-        question: "How to declare a variable in JavaScript?",
-        options: ["var", "variable", "let var", "make"],
-        answer: "var"
-    },
-    {
-        question: "Which operator checks both value and type?",
-        options: ["==", "===", "!=", "="],
-        answer: "==="
-    },
-    {
-        question: "Which loop runs a block of code again and again?",
-        options: ["if statement", "function", "for loop", "event"],
-        answer: "for loop"
-    },
-    {
-        question: "How to write a function in JavaScript?",
-        options: ["function myFunc()", "make function()", "create myFunc()", "method myFunc()"],
-        answer: "function myFunc()"
-    },
-    {
-        question: "Which array method adds an item at the end?",
-        options: ["push()", "pop()", "shift()", "addLast()"],
-        answer: "push()"
-    },
-    {
-        question: "Which method adds a new element at the beginning of an array?",
-        options: ["push()", "prepend()", "unshift()", "startAdd()"],
-        answer: "unshift()"
+var users = [];
+
+function signup() {
+    var username = document.getElementById("signupUsername").value.trim();
+    var password = document.getElementById("signupPassword").value.trim();
+
+    if (username === "" || password === "") {
+        swal("Oops!", "Please enter both username and password.", "error");
+        return;
     }
-];
-var index = 0;
-var score = 0;
 
-function showQuestion() {
-    document.getElementById("question").innerText = questions[index].question;
-
-    var optionsDiv = document.getElementById("options");
-    optionsDiv.innerHTML = "";
-
-    for (var i = 0; i < questions[index].options.length; i++) {
-        optionsDiv.innerHTML += `<button onclick="checkAnswer(this, '${questions[index].options[i]}')">${questions[index].options[i]}</button>`;
+    for (var i = 0; i < users.length; i++) {
+        if (users[i].username === username) {
+            swal("Oops!", "Username already exists!", "error");
+            return;
+        }
     }
-     document.querySelector('.prevbtn').disabled = index === 0;
-    document.querySelector('.nextbtn').disabled = index === questions.length - 1;
 
+    users.push({ username: username, password: password });
+    swal({
+        title: "Account Created!",
+        text: "Sign up successful!",
+        icon: "success",
+        button: {
+            text: "Okay",
+            className: "signUpBtn"
+        }
+    });
+
+    document.getElementById("signupPage").style.display = "none";
+    document.getElementById("loginPage").style.display = "block";
 }
 
-function checkAnswer(btn, userAns) {
-    var correct = questions[index].answer; 
+function goToLogin() {
+    document.getElementById("signupPage").style.display = "none";
+    document.getElementById("loginPage").style.display = "block";
+}
 
-    if (userAns === correct) {
-        score++;
-        btn.style.backgroundColor = "green";
-    } else {
-        btn.style.backgroundColor = "red";
+function login() {
+    var username = document.getElementById("loginUsername").value;
+    var password = document.getElementById("loginPassword").value;
+
+    var found = false;
+    for (var i = 0; i < users.length; i++) {
+        if (users[i].username === username && users[i].password === password) {
+            found = true;
+            break;
+        }
     }
 
-    setTimeout(() => {
-        nextQuestion();
-    }, 1000);
+    if (found) {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("quizPage").style.display = "block";
+        loadQuestion();
+    } else {
+        swal("Error!", "Invalid credentials!", "error");
+    }
+}
+
+function logout() {
+    document.getElementById("quizPage").style.display = "none";
+    document.getElementById("loginPage").style.display = "block";
+}
+
+var quizQues = {
+    questions: [
+        { question: "Which language is used for web apps?", options: ["Python", "JavaScript", "C++", "Java"], answer: "JavaScript" },
+        { question: "What does HTML stand for?", options: ["Hyper Trainer Markup Language", "Hyper Text Markup Language", "High Text Markup Language", "None"], answer: "Hyper Text Markup Language" },
+        { question: "What does CSS stand for?", options: ["Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets", "None"], answer: "Cascading Style Sheets" },
+        { question: "Which HTML tag is used for the largest heading?", options: ["<h6>", "<h1>", "<head>", "<header>"], answer: "<h1>" },
+        { question: "Which tag is used to insert a line break in HTML?", options: ["<br>", "<lb>", "<break>", "<hr>"], answer: "<br>" },
+        { question: "How do you create an unordered list in HTML?", options: ["<ul>", "<ol>", "<list>", "<li>"], answer: "<ul>" },
+        { question: "Which attribute is used to add inline CSS styles?", options: ["class", "style", "css", "id"], answer: "style" },
+        { question: "Which CSS property is used to change text color?", options: ["color", "text-color", "font-color", "background-color"], answer: "color" },
+        { question: "Which CSS property changes element background color?", options: ["background-color", "color", "bgcolor", "background"], answer: "background-color" },
+        { question: "How do you refer an external stylesheet in HTML?", options: ['<link rel="stylesheet" href="style.css">', '<style src="style.css">', '<css src="style.css">', '<script href="style.css">'], answer: '<link rel="stylesheet" href="style.css">' },
+        { question: "Which HTML element is used to define the body of a document?", options: ["<body>", "<html>", "<head>", "<page>"], answer: "<body>" },
+        { question: "Which CSS selector targets all elements with class 'container'?", options: [".container", "#container", "container", "*container"], answer: ".container" },
+        { question: "How do you make text bold in HTML using a semantic tag?", options: ["<b>", "<strong>", "<bold>", "<em>"], answer: "<strong>" },
+        { question: "Which tag inserts a horizontal line in HTML?", options: ["<hr>", "<line>", "<br>", "<hl>"], answer: "<hr>" },
+        { question: "Which HTML tag is used to insert an image?", options: ["<img>", "<image>", "<src>", "<picture>"], answer: "<img>" },
+        { question: "In CSS, which property sets the space between the content and the border?", options: ["margin", "padding", "border-spacing", "spacing"], answer: "padding" },
+        { question: "Which property changes spacing outside an element?", options: ["padding", "margin", "spacing", "border"], answer: "margin" },
+        { question: "Which HTML tag defines an ordered (numbered) list?", options: ["<ol>", "<ul>", "<list>", "<dl>"], answer: "<ol>" },
+        { question: "Which tag is used to make text italic in HTML?", options: ["<i>", "<italic>", "<em>", "<italics>"], answer: "<em>" },
+        { question: "How do you comment in CSS?", options: ["/* comment */", "// comment", "<!-- comment -->", "# comment"], answer: "/* comment */" }
+    ]
+};
+
+var currentQuestion = 0;
+var userAnswers = [];
+
+function loadQuestion() {
+    var q = quizQues.questions[currentQuestion];
+    document.getElementById("questionText").innerText = q.question;
+
+    var optionsDiv = document.getElementById("optionsContainer");
+    optionsDiv.innerHTML = "";
+
+    for (var i = 0; i < q.options.length; i++) {
+        var btn = document.createElement("button");
+        btn.className = "btn mb-2 option-btn";
+        btn.innerText = q.options[i];
+        btn.setAttribute("onclick", "selectOption('" + q.options[i] + "')");
+        optionsDiv.appendChild(btn);
+    }
+
+    document.getElementById("prevBtn").disabled = (currentQuestion === 0);
+    document.getElementById("nextBtn").disabled = !userAnswers[currentQuestion];
+    document.getElementById("nextBtn").innerText = (currentQuestion === quizQues.questions.length - 1) ? "Finish" : "Next";
+}
+
+function selectOption(option) {
+    userAnswers[currentQuestion] = option;
+    document.getElementById("nextBtn").disabled = false;
 }
 
 function prevQuestion() {
-    if (index > 0) {
-        index--;
-        showQuestion();
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        loadQuestion();
     }
 }
 
 function nextQuestion() {
-    index++;
+    if (!userAnswers[currentQuestion]) return;
 
-    if (index < questions.length) {
-        showQuestion();
+    if (currentQuestion < quizQues.questions.length - 1) {
+        currentQuestion++;
+        loadQuestion();
     } else {
-        showResult();
+        var score = 0;
+        for (var i = 0; i < quizQues.questions.length; i++) {
+            if (userAnswers[i] === quizQues.questions[i].answer) score++;
+        }
+        swal({
+            title: "Quiz Finished!",
+            text: "Your score: " + score + "/" + quizQues.questions.length,
+            icon: "success",
+            button: {
+                text: "Okay",
+                className: "signUpBtn"
+            }
+        });
+        document.getElementById("quizPage").style.display = "none";
+        document.getElementById("loginPage").style.display = "block";
     }
 }
-
-function showResult() {
-    document.getElementById("question").innerText = "Quiz Completed!";
-    document.getElementById("options").innerHTML = `
-        <h3 style="text-align:center; color:#5a189a;">Your Score: ${score} / ${questions.length}</h3>
-        <button onclick="restartQuiz()" style="display:block; margin:20px auto; padding:10px 20px; border:none; border-radius:10px; background-color:#5a189a; color:#fff; cursor:pointer;">Restart Quiz</button>
-    `;
-    document.querySelector('.prevbtn').disabled = true;
-    document.querySelector('.nextbtn').disabled = true;
-}
-
-function restartQuiz() {
-    index = 0;
-    score = 0;
-    showQuestion();
-}
-
-showQuestion();

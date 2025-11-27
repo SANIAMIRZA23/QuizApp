@@ -1,83 +1,81 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz App</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    
-    <!-- <div class="container-fluid">
-        <div id="signUpFormContainer" class="card p-4 mx-auto mt-5" style="width: 30rem;">
-            <h1 class="text-center mb-4 myHeading">
-                <img class="logo" src="imgs/quiz-logo.svg" alt="Logo"><br>
-                Sign Up Form
-            </h1>
-
-            <form id="signUpForm" onsubmit="signUpForm(event)">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label class="form-label">First Name:</label>
-                        <input required type="text" class="form-control" id="inputFirstName">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Last Name:</label>
-                        <input required type="text" class="form-control" id="inputLastName">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Password:</label>
-                        <input required type="password" class="form-control" id="inputPassword4">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Email:</label>
-                        <input required type="email" class="form-control" id="inputEmail4">
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label">Cell :</label>
-                        <input required type="number" class="form-control" id="inputCell" placeholder="####-#######">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Country:</label>
-                        <input required type="text" class="form-control" id="inputCountry">
-                    </div>
-                    <div class="col-12">
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="gridCheck" required>
-                            <label class="form-check-label" for="gridCheck">Check me out</label>
-                        </div>
-                        <button type="submit" class="btn myBtn width text-white">Sign Up</button>
-                    </div>
-                </div>
-            </form>
-        </div> -->
-    <nav class="navbar">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1 ms-5"><img src="imgs/quiz-logo.svg" alt="Quiz Logo"
-                    class="myLogo"></span>
-        </div>
-    </nav>
 
     <div class="container">
-        <h2 id="question"></h2>
 
-        <div id="options"></div>
-
-        <div class="d-flex gap-3 mt-3">
-            <button type="button" onclick="prevQuestion()" class="btn prevbtn">Previous</button>
-            <button type="button" onclick="nextQuestion()" class="btn nextbtn">Next</button>
+        <div id="signupPage" class="card shadow p-4 mt-5 bg-light rounded">
+            <h2 class="mb-3 text-center Heading">Sign Up</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="signupUsername" class="form-label userHeading">Username:</label>
+                    <input type="text" class="form-control shadow-sm" id="signupUsername" placeholder="Enter username"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label for="signupPassword" class="form-label passHeading">Password:</label>
+                    <input type="password" class="form-control shadow-sm" id="signupPassword"
+                        placeholder="Enter password" required>
+                </div>
+                <button type="button" class="btn signUpBtn w-100" onclick="signup()">Sign Up</button>
+            </form>
+            <p class="mt-2 text-center accMsg">Already have an account? <a href="#" onclick="goToLogin()">Login here</a>
+            </p>
         </div>
+
+        <div id="loginPage" class="card shadow p-4 mt-5 bg-light rounded" style="display:none;">
+            <h2 class="mb-3 text-center Heading">Login</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="loginUsername" class="form-label userHeading">Username:</label>
+                    <input type="text" class="form-control shadow-sm" id="loginUsername" placeholder="Enter username"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label for="loginPassword" class="form-label passHeading">Password:</label>
+                    <input type="password" class="form-control shadow-sm" id="loginPassword"
+                        placeholder="Enter password" required>
+                </div>
+                <button type="button" class="btn signUpBtn w-100" onclick="login()">Login</button>
+            </form>
+        </div>
+        <div id="quizPage" class="mt-5" style="display:none;">
+            <nav class="navbar navbar-expand-lg navbar-dark myNav rounded fixed-top shadow-sm mb-4">
+                <div class="container-fluid">
+                    <span class="navbar-brand quizHeading">Quiz App</span>
+                    <button class="btn myBtn" onclick="logout()">Logout</button>
+                </div>
+            </nav>
+
+
+            <div class="card shadow p-4 bg-light rounded">
+                <h4 id="questionText" class="mb-3"></h4>
+                <div id="optionsContainer"></div>
+            </div>
+
+            <div class="d-flex justify-content-center mt-3">
+                <button id="prevBtn" onclick="prevQuestion()">Previous</button>
+                <button id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
+            </div>
+
+        </div>
+
     </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>

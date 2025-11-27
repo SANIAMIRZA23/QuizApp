@@ -1,68 +1,147 @@
-.navbar {
-    background-color: rgba(245, 245, 245, 0.418);
+body {
+    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
-.myLogo {
-    width: 140px;
+.Heading {
+    font-family: 'Pacifico', sans-serif;
+    font-size: 2rem;
+    color: #4b0082;
+    text-shadow: 1px 1px 2px #aaa;
+
 }
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
+.userHeading {
+    color: #4b0082;
+    text-shadow: 1px 1px 2px #aaa;
 }
 
-#question {
-    font-size: 28px;
-    font-weight: bold;
-    color: #5a189a;
-    text-align: center;
-    margin-top: 80px;
-    margin-bottom: 20px;
-    line-height: 1.4;
-    font-family: "Arial", sans-serif;
-    transition: 0.3s ease;
+.passHeading {
+    color: #4b0082;
+    text-shadow: 1px 1px 2px #aaa;
 }
 
-#question:hover {
-    transform: scale(1.03);
+.signUpBtn {
+    background-color: #4b0082;
+    color: #fff;
+    width: 150px !important;
+    margin: auto;
+    display: block;
+    border: none;
+    border-radius: 5px;
 }
 
-#options button {
+.signUpBtn:hover {
+    background-color: rgb(180, 0, 220);
+    color: white;
+    cursor: pointer;
+    width: 150px !important;
+    margin: auto;
+    display: block;
+}
+
+.accMsg {
+    font-family: 'Pacifico', sans-serif;
+    text-shadow: 1px 1px 2px #aaa;
+}
+
+.swal-modal {
+    background-color: #d4f1f9 !important;
+    color: #4b0082 !important;
+    border-radius: 10px;
+}
+
+.swal-button {
+    background-color: rgb(212, 0, 255) !important;
+    color: black !important;
+    border: none;
+    border-radius: 5px;
+    width: 120px;
+}
+
+.swal-button:hover {
+    background-color: rgb(180, 0, 220) !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+.myNav {
+    background-color: #4b0082;
+}
+
+.quizHeading {
+    font-family: 'Pacifico', sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: 1px 1px 2px #aaa;
+}
+
+.myBtn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 20px;
+    font-family: 'Pacifico', sans-serif;
+    margin-right: 40px;
+}
+
+.myBtn:hover {
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card {
+    max-width: 500px;
+    margin: 120px auto 0 auto;
+}
+
+#questionText {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.option-btn {
     display: block;
     width: 100%;
-    padding: 14px;
-    margin: 12px 0;
-    font-size: 18px;
-    background-color: #8d5f8c;
-    color: white;
-    border: none;
-    border-radius: 12px;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: left;
+    border-radius: 5px;
+    border: 1px solid #4b0082;
+    background-color: #fff;
+    color: #4b0082;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.5rem;
     cursor: pointer;
-    transition: 0.25s ease;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
 }
 
-#options button:hover {
-    background-color: #b95e82;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
-}
-
-.prevbtn,
-.nextbtn {
-    background-color: #5a189a;
+.option-btn:hover {
+    background-color: #4b0082;
     color: #fff;
-    padding: 10px 22px;
-    border-radius: 10px;
     border: none;
-    transition: 0.25s ease;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
-.prevbtn:hover,
-.nextbtn:hover {
-    background-color: #b95e82;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+#prevBtn, #nextBtn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 0 5px;
 }
+
+#prevBtn:hover, #nextBtn:hover {
+    background-color: #333;
+    color: #fff;
+}
+
